@@ -4,4 +4,3 @@ Feature: My First Feature
     Given I have created my first cucumber scenario
     When I add steps
     Then I will be successful
-  
