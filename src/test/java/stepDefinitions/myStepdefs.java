@@ -4,7 +4,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import resources.utilities;
 import testData.auth;
+
+import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,10 +16,11 @@ public class myStepdefs {
     auth auth = new auth();
 
     @Given("I have created my first cucumber scenario")
-    public void iHaveCreatedMyFirstCucumberScenario() {
-        RestAssured.baseURI = "https://restful-booker.herokuapp.com";
-
+    public void iHaveCreatedMyFirstCucumberScenario() throws IOException {
+        //RestAssured.baseURI = "https://restful-booker.herokuapp.com";
+        System.out.println(utilities.getGlobalValue("baseURL"));
         given().log().all()
+                .baseUri(utilities.getGlobalValue("baseUrl"))
                 .header("Content-Type", "application/json")
                 .body(auth.authPayload())
                 .when()
